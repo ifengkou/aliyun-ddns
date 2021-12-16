@@ -103,14 +103,14 @@ const updateRecord = (target, callback) => {
     Action: 'UpdateDomainRecord',
     RecordId: '',
     RR: rr,
-    Type: 'A',
+    Type: 'AAAA',
     Value: ip
   };
   const addParmas = {
     Action: 'AddDomainRecord',
     DomainName: domainName,
     RR: rr,
-    Type: 'A',
+    Type: 'AAAA',
     Value: ip
   };
   // 首先获取域名信息, 目的是获取要更新的域名的 RecordId
