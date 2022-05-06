@@ -118,6 +118,9 @@ const updateRecord = (target, callback) => {
     host: ALIDNS_HOST,
     path: getPath(describeSubParams)
   }, res => {
+    if (res.statusCode != 200){
+      callback('error')
+    }
     let body = [];
     res
       .on('data', chunk => body.push(chunk))
@@ -127,6 +130,9 @@ const updateRecord = (target, callback) => {
         // 获取要更新的域名的 RecordId, 并检查是否需要更新
         let shouldUpdate = false;
         let shouldAdd = true;
+        if (!result.DomainRecords || !result.DomainRecords.Record){
+          callback('error')
+        }
         result.DomainRecords.Record
           .filter(record => record.RR === updateParmas.RR)
           .forEach(record => {
